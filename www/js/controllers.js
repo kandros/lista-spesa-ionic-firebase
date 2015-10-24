@@ -18,11 +18,13 @@ angular.module("listControllersModule", [])
         name: "dsds"
       });
     };
-  _.times(10, function (index) {
-    $scope.list.$add({
-      name: "Product "+ index
+  $scope.addDummy = function () {
+    _.times(10, function (index) {
+      $scope.list.$add({
+        name: "Product "+ index
+      });
     });
-  });
+  }
   $scope.removeItem = function (item) {
     $scope.list.$remove(item);
   };
