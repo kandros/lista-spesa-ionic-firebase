@@ -9286,3 +9286,7 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+.tabs-striped.tabs-positive .tab-item.tab-item-active,
+.tabs-striped.tabs-positive .tab-item.activated {
+  border: none; }
