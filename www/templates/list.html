@@ -13,15 +13,15 @@
     </div>
   </ion-header-bar>
   <ion-content>
-      <ion-list
-                show-delete="shouldShowDelete"
-                show-reorder="shouldShowReorder"
-                can-swipe="listCanSwipe">
-        <ion-item ng-repeat="item in list">
-            {{item.name}}
-          <ion-delete-button class="ion-minus-circled" ng-click="removeItem(item)"></ion-delete-button>
-          <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
-        </ion-item>
-      </ion-list>
+    <ion-list can-swipe="listCanSwipe" show-delete="shouldShowDelete" show-reorder="shouldShowReorder">
+      <ion-item ng-repeat="item in list">
+        {{item.name}}
+        <ion-delete-button class="ion-minus-circled" ng-click="removeItem(item)"></ion-delete-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+        <ion-option-button class="button-positive" ng-click="edit(item)">
+          Edit
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
