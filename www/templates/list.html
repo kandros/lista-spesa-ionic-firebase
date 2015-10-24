@@ -3,7 +3,7 @@
   <ion-header-bar class="bar-positive">
     <div class="buttons">
       <button class="button icon ion-ios-minus-outline" ng-click="shouldShowDelete = !shouldShowDelete; shouldShowReorder = false"></button>
-      <button class="button icon ion-ios-plus-outline" ng-click="addDummy()"></button>
+      <!-- <button class="button icon ion-ios-plus-outline" ng-click="addDummy()"></button> -->
       <button class="button icon ion-ios-plus-outline" ng-click="openModal()"></button>
     </div>
     <h1 class="title">Lista-spesa</h1>
@@ -15,7 +15,15 @@
   </ion-header-bar>
   <ion-content>
     <ion-list can-swipe="listCanSwipe" show-delete="shouldShowDelete" show-reorder="shouldShowReorder">
-      <ion-item class="item" ng-class="{completed: item.completed}" ng-repeat="item in list | filter: {completed: false} | orderBy:id:reverse track by $index" ng-click="toggleComplete(item)">
+      <ion-item class="item important" ng-class="{completed: item.completed}" ng-repeat="item in list | filter: {completed: false} | filter: {important: true} track by $index" ng-click="toggleComplete(item)">
+        {{item.name}}
+        <ion-delete-button class="ion-minus-circled" ng-click="removeItem(item)"></ion-delete-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+        <ion-option-button class="button-energized" ng-click="edit(item)">
+          modifica
+        </ion-option-button>
+      </ion-item>
+      <ion-item class="item" ng-class="{completed: item.completed}" ng-repeat="item in list | filter: {completed: false} | filter: {important: false} track by $index" ng-click="toggleComplete(item)">
         {{item.name}}
         <ion-delete-button class="ion-minus-circled" ng-click="removeItem(item)"></ion-delete-button>
         <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>

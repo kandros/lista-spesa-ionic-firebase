@@ -17,7 +17,8 @@ angular.module("listControllersModule", [])
   };
   $ionicModal.fromTemplateUrl('templates/add-item-modal.html', {
     scope: $scope,
-    animation: 'slide-in-up'
+    animation: 'slide-in-up',
+    focusFirstInput: true
   }).then(function (modal) {
     $scope.modal = modal;
   });
@@ -34,8 +35,8 @@ angular.module("listControllersModule", [])
       $scope.resetUi();
       $scope.list.$add({
         name: this.name,
-        completed: false,
-        important: false
+        important: this.checked,
+        completed: false
       });
       this.name = "";
       $scope.closeModal();
@@ -43,19 +44,19 @@ angular.module("listControllersModule", [])
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
-  $scope.addDummy = function() {
-    _.times(10, function (index) {
-      var completed = false;
-      if (index % 4 === 0) {
-        completed = true;
-      }
-      $scope.list.$add({
-        name: "Product "+ index,
-        completed: completed,
-        important: false
-      });
-    });
-  };
+  // $scope.addDummy = function() {
+  //   _.times(10, function (index) {
+  //     var completed = false;
+  //     if (index % 4 === 0) {
+  //       completed = true;
+  //     }
+  //     $scope.list.$add({
+  //       name: "Product "+ index,
+  //       completed: completed,
+  //       important: false
+  //     });
+  //   });
+  // };
   $scope.toggleComplete = function (item) {
     item.completed = !item.completed;
   };

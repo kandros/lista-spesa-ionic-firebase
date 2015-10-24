@@ -29,3 +29,6 @@ $energized: #ff5722 !default;
   text-decoration: line-through;
   color: #ccc;
 }
+.important {
+  color: $energized;
+}

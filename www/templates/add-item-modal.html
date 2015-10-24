@@ -6,8 +6,19 @@
   <form ng-submit="addItem()">
     <div class="list list-inset">
       <label class="item item-input">
-        <input autofocus placeholder="Prodotto" ng-model="name" name="name" type="text">
+        <input required placeholder="Prodotto" ng-model="name" name="name" type="text">
       </label>
+      <ul class="list">
+        <li class="item item-toggle">
+          Importante
+          <label class="toggle toggle-energized">
+            <input ng-model="checked" ng-init="checked=false" type="checkbox">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </li>
+      </ul>
       <button class="button button-block button-positive activated">
         Submit
       </button>

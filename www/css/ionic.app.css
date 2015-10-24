@@ -9294,3 +9294,6 @@ a.button {
 .completed {
   text-decoration: line-through;
   color: #ccc; }
+
+.important {
+  color: #ff5722; }

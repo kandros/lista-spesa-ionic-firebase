@@ -6,7 +6,7 @@
 angular.module('starter', [
   'listControllersModule',
   'ionic',
-  'firebase'
+  'firebase',
 ])
 
 .run(function($ionicPlatform) {
