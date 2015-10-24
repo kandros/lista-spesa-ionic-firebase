@@ -1,0 +1,12 @@
+<ion-view title="list">
+  <ion-content>
+      <ion-list
+                show-delete="shouldShowDelete"
+                show-reorder="shouldShowReorder"
+                can-swipe="listCanSwipe">
+        <ion-item ng-repeat="item in list">
+          {{item.name}}
+        </ion-item>
+      </ion-list>
+  </ion-content>
+</ion-view>
