@@ -49,8 +49,9 @@ angular.module('starter', [
       url: '/cart',
       views: {
         cart: {
-          templateUrl: 'templates/cart.html'
+          templateUrl: 'templates/cart.html',
+          controller: 'listController'
         }
       }
-    })
+    });
 });

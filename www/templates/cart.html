@@ -2,8 +2,11 @@
     <ion-header-bar class="bar-positive">
       <h1 class="title">Presi</h1>
     </ion-header-bar>
-    <ion-content padding="true">
-        <h2>Help page</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae officia, eveniet. Dolorum in deserunt odio, quam voluptatibus id voluptas inventore ex alias optio doloremque laborum, et, blanditiis eius! Voluptatum perferendis, minus dolores.</p>
+    <ion-content>
+      <ion-list can-swipe="listCanSwipe" show-delete="shouldShowDelete" show-reorder="shouldShowReorder">
+        <ion-item class="item" ng-class="{completed: item.completed}" ng-repeat="item in list | filter: {completed: true}" ng-click="toggleComplete(item)">
+          {{item.name}}
+        </ion-item>
+      </ion-list>
     </ion-content>
 </ion-view>

@@ -20,13 +20,20 @@ angular.module("listControllersModule", [])
     };
   $scope.addDummy = function () {
     _.times(10, function (index) {
+      var completed = false;
+      if (index % 4 === 0) {
+        completed = true;
+      }
       $scope.list.$add({
         name: "Product "+ index,
-        completed: false,
+        completed: completed,
         important: false
       });
     });
-  }
+  };
+  $scope.toggleComplete = function (item) {
+    item.completed = !item.completed;
+  };
   $scope.removeItem = function (item) {
     $scope.list.$remove(item);
   };

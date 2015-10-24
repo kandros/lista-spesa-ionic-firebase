@@ -14,11 +14,11 @@
   </ion-header-bar>
   <ion-content>
     <ion-list can-swipe="listCanSwipe" show-delete="shouldShowDelete" show-reorder="shouldShowReorder">
-      <ion-item ng-repeat="item in list">
+      <ion-item class="item" ng-class="{completed: item.completed}" ng-repeat="item in list | filter: {completed: false} track by $index" ng-click="toggleComplete(item)">
         {{item.name}}
         <ion-delete-button class="ion-minus-circled" ng-click="removeItem(item)"></ion-delete-button>
         <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
-        <ion-option-button class="button-positive" ng-click="edit(item)">
+        <ion-option-button class="button-energized" ng-click="edit(item)">
           modifica
         </ion-option-button>
       </ion-item>
