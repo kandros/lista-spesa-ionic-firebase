@@ -5,10 +5,10 @@
       <button class="button icon ion-ios-minus-outline" ng-click="shouldShowDelete = !shouldShowDelete; shouldShowReorder = false"></button>
       <button class="button icon ion-ios-plus-outline" ng-click="addDummy()"></button>
     </div>
-    <h1 class="title">Lists</h1>
+    <h1 class="title">Lista-spesa</h1>
     <div class="buttons">
       <button class="button" ng-click="shouldShowDelete = false; shouldShowReorder = !shouldShowReorder">
-        Reorder
+        Riordina
       </button>
     </div>
   </ion-header-bar>
@@ -19,7 +19,7 @@
         <ion-delete-button class="ion-minus-circled" ng-click="removeItem(item)"></ion-delete-button>
         <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
         <ion-option-button class="button-positive" ng-click="edit(item)">
-          Edit
+          modifica
         </ion-option-button>
       </ion-item>
     </ion-list>

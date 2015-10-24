@@ -21,7 +21,9 @@ angular.module("listControllersModule", [])
   $scope.addDummy = function () {
     _.times(10, function (index) {
       $scope.list.$add({
-        name: "Product "+ index
+        name: "Product "+ index,
+        completed: false,
+        important: false
       });
     });
   }
