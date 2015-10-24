@@ -1,6 +1,6 @@
 angular.module("listControllersModule", [])
 
-.controller("listController", ['$scope','ListArray', function($scope, ListArray) {
+.controller("listController", ['$scope','ListArray','$ionicModal', function($scope, ListArray, $ionicModal) {
   $scope.shouldShowDelete = false;
   $scope.shouldShowReorder = false;
   $scope.listCanSwipe = true;
@@ -12,12 +12,32 @@ angular.module("listControllersModule", [])
   //   });
   // });
 
+  $ionicModal.fromTemplateUrl('templates/add-item-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openModal = function () {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+
   $scope.list = ListArray;
-  $scope.addMessage = function() {
+  $scope.addItem = function() {
       $scope.list.$add({
-        name: "dsds"
+        name: this.name,
+        completed: false,
+        important: false
       });
-    };
+      $scope.closeModal();
+  };
+  $scope.$on('$destroy', function () {
+    $scope.modal.remove();
+  });
   $scope.addDummy = function () {
     _.times(10, function (index) {
       var completed = false;

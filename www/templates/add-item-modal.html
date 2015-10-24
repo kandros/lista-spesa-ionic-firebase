@@ -1,0 +1,17 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Aggiungi</h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+  <form ng-submit="addItem()">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input placeholder="Prodotto" ng-model="name" name="name" type="text">
+      </label>
+      <button class="button button-block button-positive activated">
+        Submit
+      </button>
+    </div>
+  </form>
+  </ion-content>
+</ion-modal-view>
