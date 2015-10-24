@@ -11,7 +11,10 @@ angular.module("listControllersModule", [])
   //     name: "Product "+ index
   //   });
   // });
-
+  $scope.resetUi = function() {
+    $scope.shouldShowDelete = false;
+    $scope.shouldShowReorder = false;
+  };
   $ionicModal.fromTemplateUrl('templates/add-item-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -19,26 +22,28 @@ angular.module("listControllersModule", [])
     $scope.modal = modal;
   });
 
-  $scope.openModal = function () {
+  $scope.openModal = function() {
     $scope.modal.show();
   };
-  $scope.closeModal = function () {
+  $scope.closeModal = function() {
     $scope.modal.hide();
   };
 
   $scope.list = ListArray;
   $scope.addItem = function() {
+      $scope.resetUi();
       $scope.list.$add({
         name: this.name,
         completed: false,
         important: false
       });
+      this.name = "";
       $scope.closeModal();
   };
-  $scope.$on('$destroy', function () {
+  $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
-  $scope.addDummy = function () {
+  $scope.addDummy = function() {
     _.times(10, function (index) {
       var completed = false;
       if (index % 4 === 0) {
