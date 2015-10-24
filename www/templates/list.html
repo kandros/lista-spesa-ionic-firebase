@@ -1,11 +1,26 @@
 <ion-view title="list">
+
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <button class="button button-icon icon ion-ios-minus-outline" ng-click="shouldShowDelete = !shouldShowDelete; shouldShowReorder = false"></button>
+      <button class="button button-icon icon ion-ios-plus-outline" ng-click="shouldShowDelete = !shouldShowDelete; shouldShowReorder = false"></button>
+    </div>
+    <h1 class="title">Lists</h1>
+    <div class="buttons">
+      <button class="button" ng-click="shouldShowDelete = false; shouldShowReorder = !shouldShowReorder">
+        Reorder
+      </button>
+    </div>
+  </ion-header-bar>
   <ion-content>
       <ion-list
                 show-delete="shouldShowDelete"
                 show-reorder="shouldShowReorder"
                 can-swipe="listCanSwipe">
         <ion-item ng-repeat="item in list">
-          {{item.name}}
+            {{item.name}}
+          <ion-delete-button class="ion-minus-circled" ng-click="removeItem(item)"></ion-delete-button>
+          <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
         </ion-item>
       </ion-list>
   </ion-content>

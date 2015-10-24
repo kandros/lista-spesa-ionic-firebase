@@ -5,7 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', [
   'listControllersModule',
-  'ionic'
+  'ionic',
+  'firebase'
 ])
 
 .run(function($ionicPlatform) {
@@ -21,9 +22,14 @@ angular.module('starter', [
   });
 })
 
-// .config(function ($ionicConfigProvider) {
-//   $ionicConfigProvider.tabs.position("bottom");
-// })
+.factory("ListArray", function($firebaseArray) {
+  var listRef = new Firebase("http://lista-spesa.firebaseio.com/lista");
+  return $firebaseArray(listRef);
+})
+
+.config(function ($ionicConfigProvider) {
+  $ionicConfigProvider.tabs.position("bottom");
+})
 
 .config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
