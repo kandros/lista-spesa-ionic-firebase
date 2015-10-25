@@ -39,6 +39,7 @@ angular.module("listControllersModule", [])
         completed: false
       });
       this.name = "";
+      this.checked = false;
       $scope.closeModal();
   };
   $scope.$on('$destroy', function() {
