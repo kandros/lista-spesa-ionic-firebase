@@ -27,7 +27,7 @@
         {{item.name}}
         <ion-delete-button class="ion-minus-circled" ng-click="removeItem(item)"></ion-delete-button>
         <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
-        <ion-option-button class="button-energized" ng-click="edit(item)">
+        <ion-option-button class="button-energized" ng-click="openModal(item)">
           modifica
         </ion-option-button>
       </ion-item>
