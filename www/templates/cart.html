@@ -1,6 +1,12 @@
 <ion-view title="cart">
     <ion-header-bar class="bar-positive">
-      <h1 class="title">Presi</h1>
+
+      <h1 class="title">Presi</h1
+        <div class="buttons">
+          <button class="button" ng-click="showDeleteAllConfirm()">
+            Svuota
+          </button>
+        </div>
     </ion-header-bar>
     <ion-content>
       <ion-list can-swipe="listCanSwipe" show-delete="shouldShowDelete" show-reorder="shouldShowReorder">
