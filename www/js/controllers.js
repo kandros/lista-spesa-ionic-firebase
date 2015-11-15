@@ -1,12 +1,11 @@
 angular.module("listControllersModule", [])
 
-.controller("listController", ['$scope','ListArray','$ionicModal','$ionicPopup', function($scope, ListArray, $ionicModal, $ionicPopup) {
+.controller("listController", ['$scope','ListArray','$ionicModal','$ionicPopup','$ionicListDelegate', function($scope, ListArray, $ionicModal, $ionicPopup, $ionicListDelegate) {
   $scope.shouldShowDelete = false;
   $scope.shouldShowReorder = false;
   $scope.listCanSwipe = true;
 
   $scope.list = ListArray;
-
 
   $scope.showDeleteAllConfirm = function() {
     var confirmPopup = $ionicPopup.confirm({
@@ -34,23 +33,32 @@ angular.module("listControllersModule", [])
     $scope.modal = modal;
   });
 
-  $scope.openModal = function() {
+  $scope.openModal = function(item) {
+    $ionicListDelegate.closeOptionButtons();
+    $scope.itemInForm = item || {
+      important: false,
+      completed: false
+    };
+    console.log($scope.itemInForm);
     $scope.modal.show();
-    $scope.resetUi();
   };
   $scope.closeModal = function() {
     $scope.modal.hide();
+
+  };
+
+  $scope.submitForm = function() {
+    if ($scope.itemInForm.hasOwnProperty('$id')) {
+        $scope.updateItemInFirebase($scope.itemInForm);
+    } else {
+      $scope.addItem();
+    }
+    $scope.closeModal();
+    $scope.resetUi();
   };
 
   $scope.addItem = function() {
-      $scope.list.$add({
-        name: this.name,
-        important: this.checked,
-        completed: false
-      });
-      this.name = "";
-      this.checked = false;
-      $scope.closeModal();
+      $scope.list.$add($scope.itemInForm);
   };
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
