@@ -5,12 +5,9 @@ angular.module("listControllersModule", [])
   $scope.shouldShowReorder = false;
   $scope.listCanSwipe = true;
 
-  // $scope.list = [];
-  // _.times(40, function (index) {
-  //   $scope.list.push({
-  //     name: "Product "+ index
-  //   });
-  // });
+  $scope.list = ListArray;
+
+
   $scope.showDeleteAllConfirm = function() {
     var confirmPopup = $ionicPopup.confirm({
       title: 'Svuota presi',
@@ -24,6 +21,7 @@ angular.module("listControllersModule", [])
       }
     });
   };
+
   $scope.resetUi = function() {
     $scope.shouldShowDelete = false;
     $scope.shouldShowReorder = false;
@@ -32,7 +30,7 @@ angular.module("listControllersModule", [])
     scope: $scope,
     animation: 'slide-in-up',
     focusFirstInput: true
-  }).then(function (modal) {
+  }).then(function(modal) {
     $scope.modal = modal;
   });
 
@@ -44,7 +42,6 @@ angular.module("listControllersModule", [])
     $scope.modal.hide();
   };
 
-  $scope.list = ListArray;
   $scope.addItem = function() {
       $scope.list.$add({
         name: this.name,
@@ -58,29 +55,24 @@ angular.module("listControllersModule", [])
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
-  // $scope.addDummy = function() {
-  //   _.times(10, function (index) {
-  //     var completed = false;
-  //     if (index % 4 === 0) {
-  //       completed = true;
-  //     }
-  //     $scope.list.$add({
-  //       name: "Product "+ index,
-  //       completed: completed,
-  //       important: false
-  //     });
-  //   });
-  // };
-  $scope.toggleComplete = function (item) {
+
+  $scope.toggleComplete = function(item) {
     item.completed = !item.completed;
+    $scope.updateItemInFirebase(item);
+    console.log(item);
   };
-  $scope.removeItem = function (item) {
+  $scope.removeItemInFirebase = function(item) {
     $scope.list.$remove(item);
   };
+
+  $scope.updateItemInFirebase = function(item) {
+    $scope.list.$save(item);
+  };
+
   $scope.removeCompleted = function() {
     $scope.list.forEach(function(item) {
       if (item.completed) {
-        $scope.removeItem(item);
+        $scope.removeItemInFirebase(item);
       }
     });
   };
