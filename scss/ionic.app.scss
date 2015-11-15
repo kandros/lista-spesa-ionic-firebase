@@ -23,8 +23,23 @@ $energized: #ff5722 !default;
 @import "www/lib/ionic/scss/ionic";
 .tabs-striped.tabs-positive .tab-item.tab-item-active,
 .tabs-striped.tabs-positive .tab-item.activated {
-  border: none;
+  border: none!important;
+  margin-top: 0!important;
 }
+
+
+.tabs-striped .tabs {
+  border-bottom: none!important;
+}
+
+.tabs-striped.tabs-positive .tab-item.tab-item-active,
+.tabs-striped.tabs-positive .tab-item.tab-item-active.activated,
+.tabs-striped .tab-item.tab-item-active.activated,
+.tabs-striped .tab-item.tab-item-active {
+  margin-top: 0!important;
+}
+
+
 .completed {
   text-decoration: line-through;
   color: #ccc;
